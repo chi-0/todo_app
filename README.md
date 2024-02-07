@@ -16,6 +16,7 @@
 
 - react-router-dom
 - styled-components
+- react-hook-form
 
 ### 일정
 

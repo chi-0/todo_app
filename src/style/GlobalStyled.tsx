@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { COLOR_PICK } from "./colorPick";
 
 export const GlobalStyled = createGlobalStyle`
   * {
@@ -17,6 +18,9 @@ export const GlobalStyled = createGlobalStyle`
 
   body {
     width: 100%;
-    background-color: #555555;
+    background-color: ${COLOR_PICK.grayColor};
+    color: ${COLOR_PICK.textColor};
+    font-family: "Noto Sans KR", sans-serif;
+    letter-spacing: -1px;
   }
 `;

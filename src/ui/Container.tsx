@@ -1,17 +1,18 @@
 import { FC, ReactNode } from "react";
 import styled from "styled-components";
+import { COLOR_PICK } from "../style/colorPick";
 
 const Wrap = styled.div`
   width: 100%;
-  padding: 15px 5%;
+  padding: 0 5%;
 `;
 
 const InnerWrap = styled.div`
-  width: 520px;
-  height: 700px;
-  background-color: #262626;
+  width: 600px;
+  height: 100vh;
+  background-color: ${COLOR_PICK.darkColor};
   margin: 0 auto;
-  border-radius: 15px;
+  padding: 12px;
 `;
 
 export const Container: FC<{ children: ReactNode }> = ({ children }) => {
