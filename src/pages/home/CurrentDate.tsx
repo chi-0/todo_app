@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { COLOR_PICK } from "../../style/colorPick";
 
 const Today = styled.p`
-  font-size: 20px;
+  font-size: 28px;
+  margin-bottom: 20px;
 
   > span {
     color: ${COLOR_PICK.mainColor};

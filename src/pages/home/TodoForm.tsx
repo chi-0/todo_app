@@ -5,6 +5,7 @@ const Form = styled.form`
   display: flex;
   justify-content: space-between;
   position: relative;
+  margin-bottom: 20px;
 
   > label {
     position: absolute;
@@ -18,14 +19,13 @@ const Input = styled.input`
   width: 480px;
   height: 60px;
   padding: 0 13px;
-  background-color: white;
+  background-color: ${COLOR_PICK.textColor};
   color: ${COLOR_PICK.darkColor};
   box-sizing: border-box;
   font-size: 18px;
   font-weight: 500;
 
   &::placeholder {
-    color: #acacac;
     font-weight: 300;
   }
 `;
