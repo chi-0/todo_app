@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { COLOR_PICK } from "../../style/colorPick";
-import { FC, MouseEvent, useRef } from "react";
+import { FC, useState } from "react";
 import { Todo } from "./Home";
 
 const ListWrap = styled.ul`
@@ -11,7 +11,7 @@ const ListWrap = styled.ul`
   overflow-y: auto;
 `;
 
-const TodoItem = styled.li`
+const TodoItem = styled.li<{ $complete: boolean }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -19,8 +19,10 @@ const TodoItem = styled.li`
 
   > p {
     width: 79%;
-    background-color: ${COLOR_PICK.mainColor};
+    background-color: ${(props) =>
+      props.$complete ? "#acacac" : COLOR_PICK.mainColor};
     padding: 12px;
+    text-decoration: ${(props) => (props.$complete ? "line-through" : "none")};
   }
 `;
 
@@ -34,28 +36,38 @@ const Btn = styled.button<{ $color: string }>`
   margin-left: 5px;
 `;
 
-export const TodoList: FC<{ todoList: Todo[] }> = ({ todoList }) => {
-  const textRef = useRef<(HTMLParagraphElement | null)[]>([]);
-  const { current: textCurrent } = textRef;
+export const TodoList: FC<{
+  todoList: Todo[];
+  removeHandler: (id: string) => void;
+}> = ({ todoList, removeHandler }) => {
+  const [complete, setComplete] = useState<string[]>([]);
 
-  const checkHandler = (index: number) => {
-    textCurrent[index]!.style.textDecoration = "line-through";
+  const checkHandler = (id: string) => {
+    if (!complete.includes(id)) {
+      setComplete((prev) => [...prev, id]);
+    } else {
+      setComplete((prev) => prev.filter((i) => i !== id));
+    }
   };
 
   return (
     <ListWrap>
-      {todoList.map((data, index) => (
-        <TodoItem key={data.id}>
-          <p ref={(el) => (textRef.current[index] = el)}>{data.text}</p>
+      {todoList.map((data) => (
+        <TodoItem key={data.id} $complete={complete.includes(data.id)}>
+          <p>{data.text}</p>
           <BtnWrap>
             <Btn
               type="button"
               $color={COLOR_PICK.navyColor}
-              onClick={() => checkHandler(index)}
+              onClick={() => checkHandler(data.id)}
             >
-              완료
+              {complete.includes(data.id) ? "취소" : "완료"}
             </Btn>
-            <Btn type="button" $color={COLOR_PICK.redColor}>
+            <Btn
+              type="button"
+              $color={COLOR_PICK.redColor}
+              onClick={() => removeHandler(data.id)}
+            >
               삭제
             </Btn>
           </BtnWrap>

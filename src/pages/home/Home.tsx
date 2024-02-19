@@ -24,14 +24,18 @@ export const Home = () => {
     });
   };
 
-  console.log(todo);
+  const removeHandler = (id: string) => {
+    setTodo((prev) => {
+      return prev.filter((data) => data.id !== id);
+    });
+  };
 
   return (
     <Container>
       <CurrentDate />
       <CompleteMessage />
       <TodoForm getTodo={getTodo} />
-      <TodoList todoList={todo} />
+      <TodoList todoList={todo} removeHandler={removeHandler} />
     </Container>
   );
 };

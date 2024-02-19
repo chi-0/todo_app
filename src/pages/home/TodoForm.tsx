@@ -68,7 +68,7 @@ export const TodoForm: FC<{ getTodo: (data: string) => void }> = ({
       <Input
         id="todoText"
         type="text"
-        placeholder="오늘 해야할 일은?"
+        placeholder="해야할 일은?"
         autoComplete="off"
         {...register("todo")}
       />
