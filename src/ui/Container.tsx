@@ -1,6 +1,8 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import styled from "styled-components";
 import { COLOR_PICK } from "../style/colorPick";
+import { Header } from "../components/Header";
+import { useLocation } from "react-router-dom";
 
 const Wrap = styled.div`
   width: 100%;
@@ -16,9 +18,31 @@ const InnerWrap = styled.div`
 `;
 
 export const Container: FC<{ children: ReactNode }> = ({ children }) => {
+  const { pathname } = useLocation();
+  const [naming, setNaming] = useState("");
+
+  const headerNaming = () => {
+    if (pathname === "/") {
+      setNaming("TODO");
+    } else if (pathname === "/Portal") {
+      setNaming("PORTAL");
+    } else if (pathname === "/Ent") {
+      setNaming("ENT");
+    } else {
+      setNaming("404");
+    }
+  };
+
+  useEffect(() => {
+    headerNaming();
+  }, [pathname]);
+
   return (
     <Wrap>
-      <InnerWrap>{children}</InnerWrap>
+      <InnerWrap>
+        <Header text={naming} />
+        {children}
+      </InnerWrap>
     </Wrap>
   );
 };

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { COLOR_PICK } from "../../style/colorPick";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { FC, useState } from "react";
 
 const Form = styled.form`
   display: flex;
@@ -40,15 +42,35 @@ const Btn = styled.button`
   font-size: 18px;
 `;
 
-export const TodoForm = () => {
+type FormValues = {
+  todo: string;
+};
+
+export const TodoForm: FC<{ getTodo: (data: string) => void }> = ({
+  getTodo,
+}) => {
+  const { register, handleSubmit, reset } = useForm<FormValues>();
+
+  const submitHandler: SubmitHandler<FormValues> = (data) => {
+    const { todo } = data;
+    reset({ todo: "" });
+
+    if (todo.trim().length === 0) {
+      return;
+    }
+
+    getTodo(todo);
+  };
+
   return (
-    <Form id="todoForm">
+    <Form id="todoForm" onSubmit={handleSubmit(submitHandler)}>
       <label htmlFor="todoText" />
       <Input
         id="todoText"
         type="text"
         placeholder="오늘 해야할 일은?"
         autoComplete="off"
+        {...register("todo")}
       />
       <Btn type="submit">추가하기</Btn>
     </Form>

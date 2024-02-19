@@ -3,16 +3,35 @@ import { CurrentDate } from "./CurrentDate";
 import { CompleteMessage } from "./CompleteMessage";
 import { TodoForm } from "./TodoForm";
 import { TodoList } from "./TodoList";
-import { Header } from "../../components/Header";
+import { useState } from "react";
+
+export type Todo = {
+  id: string;
+  text: string;
+};
 
 export const Home = () => {
+  const [todo, setTodo] = useState<Todo[]>([]);
+
+  const getTodo = (data: string) => {
+    const todoObject: Todo = {
+      id: new Date().toISOString(),
+      text: data,
+    };
+
+    setTodo((prev) => {
+      return prev.concat(todoObject);
+    });
+  };
+
+  console.log(todo);
+
   return (
     <Container>
-      <Header text="TODO" />
       <CurrentDate />
       <CompleteMessage />
-      <TodoForm />
-      <TodoList />
+      <TodoForm getTodo={getTodo} />
+      <TodoList todoList={todo} />
     </Container>
   );
 };
