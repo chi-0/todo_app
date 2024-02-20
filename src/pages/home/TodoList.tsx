@@ -40,14 +40,17 @@ const Btn = styled.button<{ $color: string }>`
 export const TodoList: FC<{
   todoList: Todo[];
   removeHandler: (id: string) => void;
-}> = ({ todoList, removeHandler }) => {
+  getCompleteTodo: (id: string, text: string, valid: boolean) => void;
+}> = ({ todoList, removeHandler, getCompleteTodo }) => {
   const [complete, setComplete] = useState<string[]>([]);
 
-  const checkHandler = (id: string) => {
+  const checkHandler = (id: string, text: string) => {
     if (!complete.includes(id)) {
       setComplete((prev) => [...prev, id]);
+      getCompleteTodo(id, text, true);
     } else {
       setComplete((prev) => prev.filter((i) => i !== id));
+      getCompleteTodo(id, text, false);
     }
   };
 
@@ -60,7 +63,7 @@ export const TodoList: FC<{
             <Btn
               type="button"
               $color={COLOR_PICK.navyColor}
-              onClick={() => checkHandler(data.id)}
+              onClick={() => checkHandler(data.id, data.text)}
             >
               {complete.includes(data.id) ? "취소" : "완료"}
             </Btn>

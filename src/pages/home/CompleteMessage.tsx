@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { COLOR_PICK } from "../../style/colorPick";
+import { FC } from "react";
 
 const CompleteM = styled.p`
   font-size: 20px;
@@ -15,10 +16,14 @@ const CompleteM = styled.p`
   }
 `;
 
-export const CompleteMessage = () => {
+export const CompleteMessage: FC<{
+  todoLength: number;
+  completeLength: number;
+}> = ({ todoLength, completeLength }) => {
   return (
     <CompleteM>
-      <span>2개</span> 중 <span>1개</span>를 완료했어요👍
+      <span>{todoLength}개</span> 중 <span>{completeLength}개</span>를
+      완료했어요👍
     </CompleteM>
   );
 };
