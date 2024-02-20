@@ -9,6 +9,7 @@ const ListWrap = styled.ul`
   background-color: ${COLOR_PICK.softMainColor};
   padding: 10px;
   overflow-y: auto;
+  margin-bottom: 8px;
 `;
 
 const TodoItem = styled.li<{ $complete: boolean }>`

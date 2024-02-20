@@ -4,6 +4,7 @@ import { CompleteMessage } from "./CompleteMessage";
 import { TodoForm } from "./TodoForm";
 import { TodoList } from "./TodoList";
 import { useState } from "react";
+import { TodoBtn } from "./TodoBtn";
 
 export type Todo = {
   id: string;
@@ -36,6 +37,7 @@ export const Home = () => {
       <CompleteMessage />
       <TodoForm getTodo={getTodo} />
       <TodoList todoList={todo} removeHandler={removeHandler} />
+      <TodoBtn />
     </Container>
   );
 };

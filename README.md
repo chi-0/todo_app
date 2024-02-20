@@ -17,8 +17,6 @@
 - react-router-dom
 - styled-components
 - react-hook-form
-- react-redux
-- redux
 
 ### 일정
 
@@ -45,4 +43,15 @@
 > 4일차
 
 - [] todo 현황 기능
+- [] todo 완료목록 삭제 버튼 및 초기화 버튼 만들기
+- [] todo 초기화 기능
+- [] todo 완료목록 삭제 기능
+
+> 5일차
+
 - [] redux로 상태관리
+- [] header nav버튼 기능 및 디자인
+
+> 6일차
+
+- [] portal 디자인
