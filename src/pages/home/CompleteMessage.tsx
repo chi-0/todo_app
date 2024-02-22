@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { COLOR_PICK } from "../../style/colorPick";
-import { FC } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const CompleteM = styled.p`
   font-size: 20px;
@@ -16,10 +17,12 @@ const CompleteM = styled.p`
   }
 `;
 
-export const CompleteMessage: FC<{
-  todoLength: number;
-  completeLength: number;
-}> = ({ todoLength, completeLength }) => {
+export const CompleteMessage = () => {
+  const todoLength = useSelector((state: RootState) => state.todo.length);
+  const completeLength = useSelector(
+    (state: RootState) => state.completeTodo.length
+  );
+
   return (
     <CompleteM>
       <span>{todoLength}개</span> 중 <span>{completeLength}개</span>를

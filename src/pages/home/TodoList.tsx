@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { COLOR_PICK } from "../../style/colorPick";
-import { FC, useState } from "react";
-import { Todo } from "./Home";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { RootState, completeTodoActions, todoActions } from "../../store/store";
+import { useSelector } from "react-redux";
 
 const ListWrap = styled.ul`
   width: 100%;
@@ -37,33 +39,36 @@ const Btn = styled.button<{ $color: string }>`
   margin-left: 5px;
 `;
 
-export const TodoList: FC<{
-  todoList: Todo[];
-  removeHandler: (id: string) => void;
-  getCompleteTodo: (id: string, text: string, valid: boolean) => void;
-}> = ({ todoList, removeHandler, getCompleteTodo }) => {
+export const TodoList = () => {
+  const dispatch = useDispatch();
+  const todo = useSelector((state: RootState) => state.todo);
   const [complete, setComplete] = useState<string[]>([]);
 
-  const checkHandler = (id: string, text: string) => {
+  const checkHandler = (id: string) => {
     if (!complete.includes(id)) {
       setComplete((prev) => [...prev, id]);
-      getCompleteTodo(id, text, true);
+      dispatch(completeTodoActions.completeTodo(id));
     } else {
       setComplete((prev) => prev.filter((i) => i !== id));
-      getCompleteTodo(id, text, false);
+      dispatch(completeTodoActions.deleteCompleteTodo(id));
     }
+  };
+
+  const removeHandler = (id: string) => {
+    dispatch(todoActions.removeTodo(id));
+    dispatch(completeTodoActions.removeCompleteTodo(id));
   };
 
   return (
     <ListWrap>
-      {todoList.map((data) => (
+      {todo.map((data) => (
         <TodoItem key={data.id} $complete={complete.includes(data.id)}>
           <p>{data.text}</p>
           <BtnWrap>
             <Btn
               type="button"
               $color={COLOR_PICK.navyColor}
-              onClick={() => checkHandler(data.id, data.text)}
+              onClick={() => checkHandler(data.id)}
             >
               {complete.includes(data.id) ? "취소" : "완료"}
             </Btn>

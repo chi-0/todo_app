@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { COLOR_PICK } from "../../style/colorPick";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FC, useState } from "react";
+import { useDispatch } from "react-redux";
+import { todoActions } from "../../store/store";
 
 const Form = styled.form`
   display: flex;
@@ -46,9 +47,8 @@ type FormValues = {
   todo: string;
 };
 
-export const TodoForm: FC<{ getTodo: (data: string) => void }> = ({
-  getTodo,
-}) => {
+export const TodoForm = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm<FormValues>();
 
   const submitHandler: SubmitHandler<FormValues> = (data) => {
@@ -59,7 +59,7 @@ export const TodoForm: FC<{ getTodo: (data: string) => void }> = ({
       return;
     }
 
-    getTodo(todo);
+    dispatch(todoActions.getTodo(todo));
   };
 
   return (
