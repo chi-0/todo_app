@@ -24,6 +24,7 @@
 - @types/express
 - nodemon
 - ts-node
+- @babel/plugin-proposal-private-property-in-object
 
 ### 일정
 
