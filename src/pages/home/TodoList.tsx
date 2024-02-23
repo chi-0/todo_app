@@ -42,14 +42,15 @@ const Btn = styled.button<{ $color: string }>`
 export const TodoList = () => {
   const dispatch = useDispatch();
   const todo = useSelector((state: RootState) => state.todo);
-  const [complete, setComplete] = useState<string[]>([]);
+  const complete = useSelector((state: RootState) => state.completeTodo);
+  // const [complete, setComplete] = useState<string[]>([]);
 
   const checkHandler = (id: string) => {
-    if (!complete.includes(id)) {
-      setComplete((prev) => [...prev, id]);
+    if (!complete.some((obj) => obj.id === id)) {
+      // setComplete((prev) => [...prev, id]);
       dispatch(completeTodoActions.completeTodo(id));
     } else {
-      setComplete((prev) => prev.filter((i) => i !== id));
+      // setComplete((prev) => prev.filter((i) => i !== id));
       dispatch(completeTodoActions.deleteCompleteTodo(id));
     }
   };
@@ -62,7 +63,10 @@ export const TodoList = () => {
   return (
     <ListWrap>
       {todo.map((data) => (
-        <TodoItem key={data.id} $complete={complete.includes(data.id)}>
+        <TodoItem
+          key={data.id}
+          $complete={complete.some((obj) => obj.id === data.id)}
+        >
           <p>{data.text}</p>
           <BtnWrap>
             <Btn
@@ -70,7 +74,7 @@ export const TodoList = () => {
               $color={COLOR_PICK.navyColor}
               onClick={() => checkHandler(data.id)}
             >
-              {complete.includes(data.id) ? "취소" : "완료"}
+              {complete.some((obj) => obj.id === data.id) ? "취소" : "완료"}
             </Btn>
             <Btn
               type="button"
