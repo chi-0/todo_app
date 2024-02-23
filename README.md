@@ -20,6 +20,10 @@
 - react-redux
 - @reduxjs/toolkit
 - @types/react-redux
+- express
+- @types/express
+- nodemon
+- ts-node
 
 ### 일정
 
