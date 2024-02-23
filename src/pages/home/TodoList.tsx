@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { COLOR_PICK } from "../../style/colorPick";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { RootState, completeTodoActions, todoActions } from "../../store/store";
 import { useSelector } from "react-redux";
@@ -43,14 +42,11 @@ export const TodoList = () => {
   const dispatch = useDispatch();
   const todo = useSelector((state: RootState) => state.todo);
   const complete = useSelector((state: RootState) => state.completeTodo);
-  // const [complete, setComplete] = useState<string[]>([]);
 
   const checkHandler = (id: string) => {
     if (!complete.some((obj) => obj.id === id)) {
-      // setComplete((prev) => [...prev, id]);
       dispatch(completeTodoActions.completeTodo(id));
     } else {
-      // setComplete((prev) => prev.filter((i) => i !== id));
       dispatch(completeTodoActions.deleteCompleteTodo(id));
     }
   };
