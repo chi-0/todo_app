@@ -6,7 +6,6 @@ import { useLocation } from "react-router-dom";
 
 const Wrap = styled.div`
   width: 100%;
-  padding: 0 5%;
 `;
 
 const InnerWrap = styled.div`
@@ -15,27 +14,32 @@ const InnerWrap = styled.div`
   background-color: ${COLOR_PICK.darkColor};
   margin: 0 auto;
   padding: 12px;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: 90vh;
+  }
 `;
 
 export const Container: FC<{ children: ReactNode }> = ({ children }) => {
   const { pathname } = useLocation();
   const [naming, setNaming] = useState("");
 
-  const headerNaming = () => {
-    if (pathname === "/") {
-      setNaming("TODO");
-    } else if (pathname === "/Portal") {
-      setNaming("PORTAL");
-    } else if (pathname === "/Ent") {
-      setNaming("ENT");
-    } else {
-      setNaming("404");
-    }
-  };
-
   useEffect(() => {
+    const headerNaming = () => {
+      if (pathname === "/") {
+        setNaming("TODO");
+      } else if (pathname === "/Portal") {
+        setNaming("PORTAL");
+      } else if (pathname === "/Ent") {
+        setNaming("ENT");
+      } else {
+        setNaming("404");
+      }
+    };
+
     headerNaming();
-  }, [pathname]);
+  }, [pathname, setNaming]);
 
   return (
     <Wrap>

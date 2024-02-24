@@ -13,5 +13,5 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.listen(app.get("port"), () => {
-  console.log(app.get("port"), "번 포트에서 대기중...");
+  console.log(app.get("port"), "5000포트에서 서버 실행");
 });

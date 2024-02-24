@@ -43,16 +43,29 @@ const Bar = styled.div`
   }
 `;
 
-const NavWrap = styled.div<{ $visibility: string }>`
+const NavWrap = styled.div<{
+  $visibility: string;
+  $blur: string;
+  $brightness: string;
+}>`
   position: absolute;
   top: 60px;
   left: -12px;
   width: 600px;
-  height: calc(100vh - 84px);
+  height: calc(100vh - 72px);
   z-index: 10;
-  backdrop-filter: brightness(55%) blur(5px);
+  backdrop-filter: brightness(${(props) => props.$brightness})
+    blur(${(props) => props.$blur});
+  -webkit-backdrop-filter: brightness(${(props) => props.$brightness})
+    blur(${(props) => props.$blur});
   visibility: ${(props) => props.$visibility};
   transition: 0.1s;
+
+  @media screen and (max-width: 600px) {
+    max-width: 600px;
+    width: calc(100% + 24px);
+    height: calc(90vh - 72px);
+  }
 `;
 
 const Nav = styled.div<{
@@ -98,7 +111,11 @@ export const Header: FC<{ text: string }> = ({ text }) => {
           <Bar />
         </BarBtn>
       </HeaderWrap>
-      <NavWrap $visibility={isValid ? "hidden" : "visible"}>
+      <NavWrap
+        $visibility={isValid ? "hidden" : "visible"}
+        $blur={isValid ? "0" : "5px"}
+        $brightness={isValid ? "100%" : "55%"}
+      >
         <Nav
           $height={isValid ? "0" : "172.8px"}
           $overflow={isValid ? "hidden" : "visible"}

@@ -11,6 +11,10 @@ const ListWrap = styled.ul`
   padding: 10px;
   overflow-y: auto;
   margin-bottom: 8px;
+
+  @media screen and (max-width: 600px) {
+    height: 49%;
+  }
 `;
 
 const TodoItem = styled.li<{ $complete: boolean }>`
@@ -26,9 +30,18 @@ const TodoItem = styled.li<{ $complete: boolean }>`
     padding: 12px;
     text-decoration: ${(props) => (props.$complete ? "line-through" : "none")};
   }
+
+  @media screen and (max-width: 600px) {
+    > p {
+      width: 100%;
+    }
+  }
 `;
 
-const BtnWrap = styled.div``;
+const BtnWrap = styled.div`
+  display: flex;
+  flex-shrink: 0;
+`;
 
 const Btn = styled.button<{ $color: string }>`
   all: unset;
@@ -36,6 +49,11 @@ const Btn = styled.button<{ $color: string }>`
   background-color: ${(props) => props.$color};
   padding: 12px;
   margin-left: 5px;
+
+  @media screen and (max-width: 600px) {
+    padding: 11px;
+    font-size: 14px;
+  }
 `;
 
 export const TodoList = () => {

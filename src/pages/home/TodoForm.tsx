@@ -31,6 +31,14 @@ const Input = styled.input`
   &::placeholder {
     font-weight: 300;
   }
+
+  @media screen and (max-width: 600px) {
+    max-width: 480px;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    padding: 0 10px;
+  }
 `;
 
 const Btn = styled.button`
@@ -41,6 +49,13 @@ const Btn = styled.button`
   background-color: ${COLOR_PICK.mainColor};
   box-sizing: border-box;
   font-size: 18px;
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+    height: 50px;
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
 `;
 
 type FormValues = {

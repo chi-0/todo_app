@@ -15,6 +15,10 @@ const Btn = styled.button`
   background-color: ${COLOR_PICK.redColor};
   margin-left: 10px;
   cursor: pointer;
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 export const TodoBtn = () => {
