@@ -64,7 +64,7 @@ const NavWrap = styled.div<{
   @media screen and (max-width: 600px) {
     max-width: 600px;
     width: calc(100% + 24px);
-    height: calc(90vh - 72px);
+    height: calc(100vh - 72px);
   }
 `;
 
