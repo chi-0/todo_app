@@ -13,7 +13,7 @@ const ListWrap = styled.ul`
   margin-bottom: 8px;
 
   @media screen and (max-width: 600px) {
-    height: 49%;
+    height: 340px;
   }
 `;
 
@@ -32,8 +32,11 @@ const TodoItem = styled.li<{ $complete: boolean }>`
   }
 
   @media screen and (max-width: 600px) {
+    margin-bottom: 8px;
+
     > p {
       width: 100%;
+      padding: 8px;
     }
   }
 `;

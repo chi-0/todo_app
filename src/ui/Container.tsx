@@ -17,7 +17,7 @@ const InnerWrap = styled.div`
 
   @media screen and (max-width: 600px) {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
   }
 `;
 

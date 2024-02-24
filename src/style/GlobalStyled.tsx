@@ -21,6 +21,6 @@ export const GlobalStyled = createGlobalStyle`
     background-color: ${COLOR_PICK.grayColor};
     color: ${COLOR_PICK.textColor};
     font-family: "Noto Sans KR", sans-serif;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
   }
 `;
