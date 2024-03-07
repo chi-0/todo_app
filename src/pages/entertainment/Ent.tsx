@@ -12,6 +12,11 @@ const Con = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 30px 10px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 20px 5px;
+  }
 `;
 
 export const Ent = () => {

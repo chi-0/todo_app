@@ -8,6 +8,11 @@ import { DaumSvg } from "./img/DaumSvg";
 const Con = styled.div`
   display: flex;
   gap: 20px;
+  padding: 30px 10px;
+
+  @media screen and (max-width: 600px) {
+    padding: 20px 5px;
+  }
 `;
 
 export const Portal = () => {
