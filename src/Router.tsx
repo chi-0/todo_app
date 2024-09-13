@@ -7,7 +7,7 @@ import { PageNotFound } from "./pages/pageNotFound/PageNotFound";
 
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/todo_app">
       <GlobalStyled />
 
       <Routes>
