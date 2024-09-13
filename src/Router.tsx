@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/home/Home";
 import { Ent } from "./pages/entertainment/Ent";
 import { Portal } from "./pages/portal/Portal";
@@ -7,7 +7,7 @@ import { PageNotFound } from "./pages/pageNotFound/PageNotFound";
 
 function Router() {
   return (
-    <BrowserRouter basename="/todo_app">
+    <HashRouter>
       <GlobalStyled />
 
       <Routes>
@@ -16,7 +16,7 @@ function Router() {
         <Route path="/Portal" element={<Portal />} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
